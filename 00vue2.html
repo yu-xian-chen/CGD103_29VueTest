@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    <!-- vue2與vue3的差異 : 起手式不同 (宣告、mount方式不同) -->
+
+<div id="app">
+    <h6>{{count}}</h6>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // console.log(Vue);
+    //寫法1 用el綁定id (也可以用class  . )
+    new Vue({
+        el:'#app',
+        data:{
+            count:1
+        }
+    })
+
+    //寫法2 $mount綁id  
+    const App = new Vue({  //也可以var
+        data:{
+            count:1
+        },
+        //el:'#app'
+    })
+    App.$mount('#app') 
+
+
+</script>
+<!-- <script src="https://unpkg.com/vue@next"></script>
+<script>
+    // console.log(Vue);
+    Vue.createApp({
+        data(){
+            return{
+                count:2, //number
+ 
+            }
+        }
+    }).mount("#app") -->
+
+
+
+
+
+</script>
+</body>
+</html>

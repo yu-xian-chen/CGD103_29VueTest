@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    
+
+<div id="app">
+    <!-- 雙花括弧是模板語言 -->
+    <!-- 作用域 scope -->
+    <h6>{{count}}</h6>
+    <hr>
+    <p>{{name}}</p>
+    <hr>
+    <p>{{food}}</p>
+    <hr>
+    <p>{{talk}}</p>
+    <hr>
+    <p>{{array}}</p>
+    <hr>
+    <p>{{obj.test}}</p>
+    <!-- boolean ? 1:0 -->
+    <div>{{talk ? '愛講話':'吼唷'}}</div>
+
+</div>
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    // 新增一個應用application→建立Vue實體(instance)，並掛載(mount)在網頁結點上
+    // console.log(Vue);
+    Vue.createApp({    //V大寫
+        data(){
+            return{
+                count:2, //number
+                name:'uni', //string
+                food:'sushi', 
+                talk:false, // boolean
+                array: [1,2,3], //array
+                obj: {test:'123'} //object
+            }
+        }
+    }).mount("#app") //並掛載(mount)在網頁節點上(id="app")
+
+
+
+</script>
+</body>
+</html>
