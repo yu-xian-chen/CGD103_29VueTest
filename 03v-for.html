@@ -20,12 +20,12 @@
                 <img :src="item.image" v-bind:alt="item.title">
                 <p>{{item.price}}元</p>
                 <div>
-                    <button @click="reduceCount">-</button>
+                    <button @click="reduceCount(index)">-</button>
                     <input type="number" min="0" v-model="count[index]">
-                    <button @click="addCount">+</button>
+                    <button @click="addCount(index)">+</button>
                 </div>
-                <p>總計:{{total}}元</p>
             </div>
+            <p>總計:{{total}}元</p>
         </div>
     </div>
 
@@ -68,17 +68,23 @@
             }
         },
         methods:{
-            addCount(){
-                this.count +=1
+            addCount(index){
+                this.count[index] += 1
                 this.sumTotal()
             },
-            reduceCount(){
-                if(this.count <=0) return 
-                this.count -=1
+            reduceCount(index){
+                if(this.count[index] <=0) return 
+                this.count[index] -=1
                 this.sumTotal()
             },
             sumTotal(){
-                this.total = this.count * this.price
+                this.total=0
+
+                for (countIndex in this.count){
+                    this.total += this.count[countIndex] * this.product[countIndex]['price']
+                }
+                this.total = parseInt(this.total)
+                // 變成字串
             }
         }
     }).mount("#app") 
