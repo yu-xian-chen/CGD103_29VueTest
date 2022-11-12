@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[]</title>
+</head>
+<body>
+<!--
+重點:
+註冊按鈕 @click.
+
+-->
+<style>
+/* css */
+#app{
+    width: 400px;
+    margin: auto;
+}
+.text{
+    height: 50px;
+    outline: 1px solid #aaa;
+    margin-bottom: 1px;
+}
+.button-area{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.text p{
+    text-align: end;
+    padding-right: 10px;
+}
+    
+</style>
+<!-- html -->
+<div id="app">
+    <div class="text">
+        <p id="history">history</p>
+        <p v-model="current">{{current}}</p>
+    </div>
+    <div class="button-area">
+        <button @click="btnValue">C</button>
+        <button @click="btnValue"><-</button>
+        <button @click="btnValue">%</button>
+        <button @click="btnValue">/</button>
+
+        <button @click="btnValue">7</button>
+        <button @click="btnValue">8</button>
+        <button @click="btnValue">9</button>
+        <button @click="btnValue">X</button>
+
+        <button @click="btnValue">4</button>
+        <button @click="btnValue">5</button>
+        <button @click="btnValue">6</button>
+        <button @click="btnValue">-</button>
+
+        <button @click="btnValue">1</button>
+        <button @click="btnValue">2</button>
+        <button @click="btnValue">3</button>
+        <button @click="btnValue">+</button>
+
+        <button @click="btnValue">轉換</button>
+        <button @click="btnValue">0</button>
+        <button @click="btnValue">.</button>
+        <button @click="equal">=</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+// js
+Vue.createApp({
+    data(){
+        return{
+            current:"",
+        }
+    },
+    methods{
+        btnValue(e){
+            this.current=`${this.keyin}`
+            alert(123)
+        }
+    }
+}).mount('#app')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<!--提示:
+資料邏輯運算:
+data 儲存資料的地方
+methods 事件處理
+computed 計算屬性(沒法帶參數)
+watch 監聽 
+    v-model 雙向綁定    用於input、checked、radio、select、textarea
+        v-model.number 
+        v-model.trim 
+        v-model.lazy 轉變使用change事件同步離開欄位才輸出
+    v-on 事件觸發   簡寫: @ 用於click、change
+        .stop 阻止冒泡事件    ex. @click.capture="ToThis"
+        .prevent 停止默認動作 (常用於a)
+        .capture
+        .self
+        .once
+        .passive
+    v-bind 綁定屬性   簡寫: : 
+        v-bind:class
+        v-bind:style
+        v-bind:____ 寫太長會移到computed
+    v-if 條件判斷 /v-show
+        v-if
+        v-else-if
+        v-else
+    v-for 列表渲染
+-->
+</body>
+</html>

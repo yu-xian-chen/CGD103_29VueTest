@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    
+    <style>
+        .maru{
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 1px solid darkblue;
+        }
+        /*tabの形状*/
+        .tab{
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .tab li a{
+          display: block;
+          background:#ddd;
+          margin:0 2px;
+          padding:10px 20px;
+        }
+        /*liにactiveクラスがついた時の形状*/
+        .tab li.active a{
+          background:#fff;
+        }
+
+
+        /*エリアの表示非表示と形状*/
+        .area {
+          display: none;/*はじめは非表示*/
+          opacity: 0;/*透過0*/
+          background: #fff;
+          padding:50px 20px;
+        }
+
+        /*areaにis-activeというクラスがついた時の形状*/
+        .area.is-active {
+            display: block;/*表示*/
+            animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes displayAnime{
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+
+
+        /*========= レイアウトのためのCSS ===============*/
+
+        body{
+          background:#eee;
+        }
+
+        ul{
+          list-style:none;
+        }
+
+        a{
+          color:#333;
+          text-decoration: none;
+        }
+
+        .wrapper{
+          width:100%;
+          max-width: 960px;
+          margin:30px auto;
+            background:#fefefe;
+        }
+
+        .area h2{
+          font-size:1.3rem;
+          margin:0 0 20px 10px;
+        }
+
+        .area li{
+          padding: 10px; 
+          border-bottom: 1px solid #ddd;
+        }
+        
+    </style>
+    <div id="app">
+        <div class="maru"
+        @mouseover="formHover = true" 
+        @mouseleave="formHover = false"
+        :style="{
+            background: activeColor? activeColor: '#ddd'}"
+        >{{color}}</div>
+        <form action="">
+            <div>
+                <label>2
+                    帳號:
+                    <input type="text" id="user_name" v-model.trim="account">
+                </label>
+            </div>
+            <br>
+            <div>
+                <label >信箱:
+                    <input type="email" v-model.trim="email">
+                </label>
+            </div>
+            <div>
+                <label >電話:
+                    <input type="tel" v-model.number="tel">
+                </label>
+            </div>
+            <div>
+                <label >年齡:
+                    <input type="number" min="18" max="50" v-model.number="year">
+                </label>滑鼠點這裡，右邊會有上下的按鈕(按上會直跳18直到50為止，但可以鍵盤輸入超過50的數值)
+            </div>
+            <div>
+                <label >網址:
+                    <input type="url" v-model.trim="url">
+                </label>
+            </div>
+            <div>
+                <label >檔案:
+                    <input type="file" v-model="file">
+                </label>
+            </div>
+            <div>
+                <label >搜尋:
+                    <input type="search" v-model="search">
+                </label>
+            </div>
+            <div>
+                <label >日期:
+                    <input type="date" v-model="date">
+                </label>
+            </div>
+            <div>
+                <label >時間
+                    <input type="time" v-model="time">
+                </label>
+            </div>
+            <div>
+                <label >顏色:
+                    <input type="color" v-model="color">
+                </label>
+            </div>
+            <div>
+                <label >區間:
+                    <input type="range" v-model="range">
+                </label>
+            </div>
+            <div>
+                興趣:
+                <input type="checkbox" v-model="interesting">釣魚
+                <input type="checkbox" v-model="interesting">溯溪
+                <input type="checkbox" v-model="interesting">打電腦
+            </div>
+            <div>
+                性別:
+                <input type="radio" name="sex" v-model="sex">男
+                <input type="radio" name="sex" v-model="sex">女
+            </div>
+            <div>
+                <input type="submit" v-model="submit">
+                <input type="reset"  v-model="reset">
+                <input type="button" value="按鈕" v-model="button">
+            </div>
+            <div>
+                <textarea name="" id="" cols="30" rows="10" v-model="textarea"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <!-- 分頁tab -->
+    <div class="wrapper" id="app2">
+        <ul class="tab">
+          <li><a href="#lunch">ランチ</a></li>
+          <li><a href="#drink">ドリンク</a></li>
+          <li><a href="#dinner">ディナー</a></li>
+        </ul>
+      
+          <div id="lunch" class="area">
+            <h2>ランチ</h2>
+            <ul>
+              <li>ガパオライス</li>
+              <li>ミートソーススパゲティ―</li>
+              <li>ハンバーグ定食</li>
+            </ul>
+          <!--/area--></div>
+          <div id="drink" class="area">
+            <h2>ドリンク</h2>
+            <ul>
+              <li>ウーロン茶</li>
+              <li>オレンジジュース</li>
+              <li>ジンジャーエール</li>
+            </ul>
+          <!--/area--></div>
+          <div id="dinner" class="area">
+            <h2>ディナー</h2>
+            <ul>
+              <li>カレーライス</li>
+              <li>ドリア</li>
+              <li>グラタン</li>
+            </ul>
+          <!--/area--></div>
+      <!--wrapper--></div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    // 新增一個應用application→建立Vue實體(instance)，並掛載(mount)在網頁結點上
+    // console.log(Vue);
+    Vue.createApp({    //V大寫
+        data(){
+            return{
+                formHover: false,
+                account:'',
+                email:'',
+                tel:'',
+                year:'',
+                url:'',
+                file:'',
+                search:'',
+                date:'',
+                time:'',
+                color:'',
+                range:'',
+                interesting:[],
+                sex:[],
+                submit:'',
+                reset:'',
+                button:'',
+                textarea:''
+            }
+        }
+    }).mount("#app") //並掛載(mount)在網頁節點上(id="app")
+
+    Vue.createApp({    //V大寫
+        data(){
+            return{
+
+            }
+        }
+    }).mount("#app2") //並掛載(mount)在網頁節點上(id="app")
+
+
+
+</script>
+</body>
+</html>

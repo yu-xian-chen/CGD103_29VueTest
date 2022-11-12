@@ -21,6 +21,7 @@
         <button @click="reduceCount">-</button>
         <!-- <input type="number" v-model="count">  -->
         <input type="number" v-model.number="count"> 
+        <!-- type="number"的小bug:雖然能確認數字出來永遠為number，但網頁會產生上下按鈕，如果沒注意連動就產生bug，text沒有上下按鈕，但就是要確認v-model.number 有無加上 -->
         <button @click="addCount">+</button>
     </div>
     <button>Add</button>
@@ -31,14 +32,14 @@
 <script>
     Vue.createApp({    
         data(){
-            return{
+            return{ //沒有()
                 tittle:'我是一個商品',
-                price:100,
+                price:100, //留意這些如果要拿來運算，狀態為number
                 count:1, 
                 total:0
             }
         },
-        methods:{
+        methods:{ //寫法跟data不一樣
             addCount(){
                 this.count +=1
                 // this.total = this.count * this.price
@@ -53,7 +54,7 @@
                 this.total = this.count * this.price
             }
         }
-    }).mount("#app") 
+    }).mount("#app") //這結構要記得
 
     // 三次法則: 如果程式碼重複三次，就可以拉出來寫
 
